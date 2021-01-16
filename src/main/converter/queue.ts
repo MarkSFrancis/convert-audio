@@ -1,12 +1,12 @@
-import { Conversion, ConversionStatus } from "./types";
+import { FileConversion } from "../../ipc";
 
-let conversionQueue: Conversion[] = [];
+let conversionQueue: FileConversion[] = [];
 
-export function addToQueue(conversion: Conversion) {
+export function addToQueue(conversion: FileConversion) {
   conversionQueue = [...conversionQueue, conversion];
 }
 
-export function removeFromQueue(conversion: Conversion) {
+export function removeFromQueue(conversion: FileConversion) {
   conversionQueue = conversionQueue.filter((q) => q !== conversion);
 }
 
