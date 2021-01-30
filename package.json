@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "Converts video and music in various formats to a specified format",
   "main": ".webpack/main",
+  "author": {
+    "name": "Mark Francis"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -11,53 +14,11 @@
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts ."
   },
+  "config": {
+    "forge": "./forge.config.js"
+  },
   "keywords": [],
   "license": "MIT",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "convert_media"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ],
-      "plugins": [
-        [
-          "@electron-forge/plugin-webpack",
-          {
-            "mainConfig": "./webpack.main.config.js",
-            "renderer": {
-              "config": "./webpack.renderer.config.js",
-              "entryPoints": [
-                {
-                  "html": "./src/renderer/index.html",
-                  "js": "./src/renderer/index.ts",
-                  "name": "main_window"
-                }
-              ]
-            }
-          }
-        ]
-      ]
-    }
-  },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
     "@electron-forge/maker-deb": "^6.0.0-beta.54",
