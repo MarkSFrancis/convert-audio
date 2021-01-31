@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FileConversionStatus } from "../../ipc";
-import { useListener } from "./ipc";
+import { FileConversionStatus } from "../../../ipc";
+import { useListener } from "../ipc";
 
 export const appName = "Convert Audio";
 

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import { FileConversion } from "../../ipc";
+import { toFileConversionOptions } from "../utils/conversionOptions";
 import { invokeToMain, useListener } from "../utils/ipc";
+import { ConversionOptions } from "../utils/conversionOptions";
 import { FileProgress } from "./FileProgress";
 
 export interface FileDropProps {
-  convertTo: string;
+  convertTo: ConversionOptions;
 }
 
 export function FileDrop(props: FileDropProps) {
@@ -16,7 +18,7 @@ export function FileDrop(props: FileDropProps) {
     invokeToMain(
       "pushToQueue",
       files.map((f) => f.path),
-      props.convertTo
+      toFileConversionOptions(props.convertTo)
     );
   }
 

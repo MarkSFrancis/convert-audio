@@ -23,7 +23,7 @@ const createWindow = (): void => {
   setupMainIpcListeners();
 
   if (!app.isPackaged) {
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
   }
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY).then(() => mainWindow.show());

@@ -28,9 +28,9 @@ const eventHandlers: EventHandlers = {
 
     return result.filePaths;
   },
-  pushToQueue: async (_event, filePaths, convertTo) => {
+  pushToQueue: async (_event, filePaths, options) => {
     for (const originalPath of filePaths) {
-      convert({ originalPath, convertTo });
+      convert({ originalPath, options });
     }
   },
   getProgress: () => getQueue(),

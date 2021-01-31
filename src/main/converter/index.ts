@@ -12,7 +12,7 @@ function getOutputFilename(conversion: FileConversionRequest) {
   const outputFilename = `${basename(
     conversion.originalPath,
     extname(conversion.originalPath)
-  )}.${conversion.convertTo}`;
+  )}.${conversion.options.ext}`;
 
   const outputFolder = dirname(conversion.originalPath);
   const outputPath = join(outputFolder, outputFilename);
@@ -28,6 +28,7 @@ export function convert(conversion: FileConversionRequest) {
     progressPercentage: 0,
     status: FileConversionStatus.Waiting,
     newPath,
+    outputOptions: conversion.options,
   };
 
   addToQueue(queueEntry);
@@ -61,7 +62,7 @@ function processNext(next: FileConversion) {
   next.progressPercentage = 0;
   next.status = FileConversionStatus.Processing;
 
-  convertFile(next.originalPath, next.newPath, {
+  convertFile(next.originalPath, next.newPath, next.outputOptions, {
     progress: (percentage) => {
       next.progressPercentage = percentage;
       updateUi();
