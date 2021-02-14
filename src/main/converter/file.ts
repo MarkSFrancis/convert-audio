@@ -33,6 +33,10 @@ export function convertFile(
       command = command.addOption("-map_metadata", "0:s:0");
     }
 
+    if (options.bitrate) {
+      command = command.audioBitrate(options.bitrate);
+    }
+
     command.run();
   });
 }

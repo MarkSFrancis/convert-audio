@@ -8,7 +8,7 @@ import { ConvertOptions } from "./ConvertOptions";
 
 export const HomePage: FC = () => {
   const appTitle = useAppTitle();
-  const [options, setOptions] = useState<ConversionOptions>("");
+  const [options, setOptions] = useState<ConversionOptions>();
 
   return (
     <>

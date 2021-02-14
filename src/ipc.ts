@@ -47,6 +47,11 @@ export interface FileConversionOptions {
    * Whether to copy track metadata
    */
   copyMetadata?: boolean;
+
+  /**
+   * Specify the output bitrate
+   */
+  bitrate?: string;
 }
 
 export interface ToRendererChannels {

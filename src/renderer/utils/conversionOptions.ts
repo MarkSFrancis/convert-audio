@@ -1,33 +1,63 @@
 import { FileConversionOptions } from "../../ipc";
 
-export type ConversionOptions =
-  | { key: string; ext?: string; codec?: string }
-  | string;
+export type ConversionOptions = { key: string } & FileConversionOptions;
 
 export const supportedOptions: ConversionOptions[] = [
-  "aac",
-  "flac",
-  "flv",
+  {
+    key: "aac",
+    ext: "aac",
+    bitrate: "320k",
+    copyMetadata: true,
+  },
+  {
+    key: "flac",
+    ext: "flac",
+    copyMetadata: true,
+  },
   {
     key: "m4a (lossy)",
     ext: "m4a",
+    bitrate: "320k",
+    copyMetadata: true,
   },
   {
     key: "m4a (lossless)",
     ext: "m4a",
     codec: "alac",
+    copyMetadata: true,
   },
-  "mp3",
-  "ogg",
-  "opus",
-  "wav",
-  "webm",
+  {
+    key: "mp3",
+    ext: "mp3",
+    bitrate: "320k",
+    copyMetadata: true,
+  },
+  {
+    key: "ogg",
+    ext: "ogg",
+    bitrate: "320k",
+    copyMetadata: true,
+  },
+  {
+    key: "opus",
+    ext: "opus",
+    bitrate: "320k",
+    copyMetadata: true,
+  },
+  {
+    key: "wav",
+    ext: "wav",
+  },
+  {
+    key: "webm",
+    ext: "webm",
+    bitrate: "320k",
+    copyMetadata: true,
+  },
 ];
 
 export function findConvertionOptionById(setting: string) {
-  return supportedOptions.find(
-    (o) => o === setting || (typeof o !== "string" && o.key === setting)
-  );
+  return supportedOptions.find((o) => o.key === setting);
 }
 
 export function getConversionOptionId(option: ConversionOptions) {
@@ -37,16 +67,5 @@ export function getConversionOptionId(option: ConversionOptions) {
 export function toFileConversionOptions(
   options: ConversionOptions
 ): FileConversionOptions {
-  if (typeof options === "string") {
-    return {
-      ext: options,
-      copyMetadata: true,
-    };
-  } else {
-    return {
-      ext: options.ext,
-      codec: options.codec,
-      copyMetadata: true,
-    };
-  }
+  return options;
 }
