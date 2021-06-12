@@ -7,12 +7,20 @@ import {
 } from "../../ipc";
 import { basename, extname, dirname, join } from "path";
 import { triggerInAllRenderers } from "../ipc";
+import { existsSync } from "fs";
 
 function getOutputFilename(conversion: FileConversionRequest) {
-  const outputFilename = `${basename(
+  const filenameWithoutExt = basename(
     conversion.originalPath,
     extname(conversion.originalPath)
-  )}.${conversion.options.ext}`;
+  );
+
+  let outputFilename = `${filenameWithoutExt}.${conversion.options.ext}`;
+
+  // If file exists, use "MyFile (2).mp3" style file names
+  for (let count = 2; existsSync(outputFilename); count++) {
+    outputFilename = `${filenameWithoutExt} (${count}).${conversion.options.ext}`;
+  }
 
   const outputFolder = dirname(conversion.originalPath);
   const outputPath = join(outputFolder, outputFilename);
