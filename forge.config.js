@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "@electron-forge/maker-squirrel",
       config: {
-        name: "convert_media",
+        name: "convert-audio",
       },
     },
     {
