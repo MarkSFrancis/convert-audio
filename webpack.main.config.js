@@ -6,7 +6,6 @@ module.exports = {
    * that runs in the main process.
    */
   entry: "./src/main/index.ts",
-  externals: ["ffmpeg-static"],
   module: {
     rules: require("./webpack.rules"),
   },

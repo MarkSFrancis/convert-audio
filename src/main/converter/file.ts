@@ -1,8 +1,5 @@
 import ffmpeg from "fluent-ffmpeg";
-import ffmpegPath from "ffmpeg-static";
 import { FileConversionOptions } from "../../ipc";
-
-ffmpeg.setFfmpegPath(ffmpegPath);
 
 export interface ConversionEvents {
   progress?: (percentage: number) => void;
